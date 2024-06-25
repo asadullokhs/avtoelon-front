@@ -4,6 +4,9 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { useInfoContext } from "./context/Context";
 
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -21,6 +24,7 @@ const App = () => {
   return (
     <div>
       <ToastContainer />
+
       {currentUser ? <Navbar /> : ""}
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="fade" timeout={300}>

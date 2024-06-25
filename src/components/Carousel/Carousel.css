@@ -1,0 +1,99 @@
+.slick-dots .slick-active div {
+  background-color: #1e90ff !important;
+  border: 2px solid  white;
+  opacity: 1;
+}
+/* CarouselComponent.css */
+
+.carousel-container {
+    width: 100%;
+    height: 80vh; /* Set height to 90 viewport height */
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .carousel-container .slide {
+    position: relative;
+    overflow: hidden;
+    height: 100%; /* Ensure each slide takes up full height */
+  }
+  
+  .slick-slider,.slick-list,.slick-track,.slick-slide,.slick-slide div,.slide , .slide-image{
+    height: 80vh;
+  }
+
+  .carousel-container .slide .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the entire slide */
+  }
+  
+  .slick-slide {
+    transition: transform 1s ease, opacity 1s ease;
+  }
+
+  
+  .slide {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slide-image {
+    width: 100%;
+    height: auto;
+    transition: transform 1s ease;
+  }
+  
+  .slick-dots {
+    bottom: 20px;
+  }
+  
+  .slick-dots li button:before {
+    font-size: 10px;
+    color: white;
+    opacity: 0.75;
+  }
+  
+  
+  /* Custom arrows */
+  .slick-next:before,
+  .slick-prev:before {
+    font-size: 40px;
+    color: #fff;
+  }
+  
+  .slick-next {
+    right: 25px;
+    z-index: 2;
+  }
+  
+  .slick-prev {
+    left: 25px;
+    z-index: 2;
+  }
+  
+  .slide-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    height: auto !important;
+    transition: opacity 1s ease;
+  }
+  
+  .slide:hover .slide-image {
+    transform: scale(1.05);
+  }
+  
+  .slide:hover .slide-caption {
+    opacity: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-container {
+      height: 80vh; /* Adjust height for smaller screens if needed */
+    }
+  }

@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getAll } from "../api/categoryRequests";
 
 const InfoContext = createContext();
 
@@ -16,10 +17,23 @@ export const InfoProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
+  let [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const getAllCategory = async () => {
+      const res = await getAll();
+      setCategories(res?.data.category);
+    };
+
+    getAllCategory();
+  }, [currentUser]);
+
   const value = {
     currentUser,
     setCurrentUser,
     exit,
+    categories,
+    setCategories,
     serverUrl,
   };
 
