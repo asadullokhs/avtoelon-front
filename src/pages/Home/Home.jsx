@@ -5,8 +5,11 @@ import CarouselComponent from "../../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { currentUser, categories } = useInfoContext();
+  const { currentUser, categories, cars } = useInfoContext();
 
+  const sortCars = cars.slice(cars.length - 4, cars.length).reverse();
+
+  console.log(cars);
   return (
     <>
       <div className="homepage">
@@ -31,26 +34,27 @@ const Home = () => {
               );
             })
           ) : (
-            <p>Hhhhh</p>
+            <p>There's no categories</p>
           )}
         </section>
         <section className="featured-cars">
-          <h2>Featured Cars</h2>
+          <h2>Recent cars</h2>
           <div className="car-list">
-            <div className="car-item">
-              <img src="https://via.placeholder.com/300x200" alt="Car 1" />
-              <div className="car-details">
-                <h3>Car Model 1</h3>
-                <p>$30,000</p>
-              </div>
-            </div>
-            <div className="car-item">
-              <img src="https://via.placeholder.com/300x200" alt="Car 2" />
-              <div className="car-details">
-                <h3>Car Model 2</h3>
-                <p>$40,000</p>
-              </div>
-            </div>
+            {cars.length > 0 ? (
+              sortCars.map((car) => {
+                return (
+                  <div className="car-item">
+                    <img src={car.image.url} alt="Car 1" />
+                    <div className="car-details">
+                      <h3>{car.title}</h3>
+                      <p>{car.price + "$"}</p>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p>Pashol naxuy</p>
+            )}
           </div>
         </section>
         <section className="testimonials">

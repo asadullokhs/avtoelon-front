@@ -27,7 +27,7 @@ const App = () => {
 
       {currentUser ? <Navbar /> : ""}
       <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={300}>
+        <CSSTransition key={location.key} classNames="fade" timeout={400}>
           <Routes location={location}>
             <Route path="/" element={currentUser ? <Home /> : <Auth />} />
             <Route path="/about" element={<About />} />

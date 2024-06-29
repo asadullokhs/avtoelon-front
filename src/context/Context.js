@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAll } from "../api/categoryRequests";
+import { getAllCars } from "../api/carRequests";
 
 const InfoContext = createContext();
 
@@ -18,14 +19,20 @@ export const InfoProvider = ({ children }) => {
   };
 
   let [categories, setCategories] = useState([]);
+  let [cars, setCars] = useState([]);
 
   useEffect(() => {
     const getAllCategory = async () => {
       const res = await getAll();
       setCategories(res?.data.category);
     };
+    const getCars = async () => {
+      const res = await getAllCars();
+      setCars(res?.data.cars);
+    };
 
     getAllCategory();
+    getCars();
   }, [currentUser]);
 
   const value = {
@@ -34,6 +41,8 @@ export const InfoProvider = ({ children }) => {
     exit,
     categories,
     setCategories,
+    cars,
+    setCars,
     serverUrl,
   };
 

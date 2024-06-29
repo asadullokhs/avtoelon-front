@@ -115,6 +115,7 @@ body {
   
   .car-item {
     text-align: center;
+    width: 25%;
     margin: 20px;
   }
   
