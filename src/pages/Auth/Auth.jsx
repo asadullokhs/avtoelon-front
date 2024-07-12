@@ -77,7 +77,7 @@ const Auth = () => {
               <div>
                 <input
                   type="text"
-                  name="firstName"
+                  name="firstname"
                   className="info-input"
                   placeholder="Enter your firstname"
                   required
@@ -86,7 +86,7 @@ const Auth = () => {
               <div>
                 <input
                   type="text"
-                  name="lastName"
+                  name="lastname"
                   className="info-input"
                   placeholder="Enter your lastname"
                   required
