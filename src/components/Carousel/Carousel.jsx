@@ -5,6 +5,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Carousel.css";
 
+import byd from "../../images/byd.jpg"
+import bmw from "../../images/bmw.webp"
+import supra from "../../images/supra.jpg"
+import porsche from "../../images/911.jpg"
+
 const CarouselComponent = () => {
   const settings = {
     dots: true,
@@ -43,20 +48,20 @@ const CarouselComponent = () => {
   };
 
   const images = [
-    "https://via.placeholder.com/1920x600?text=Special+Offer+1",
-    "https://via.placeholder.com/1920x600?text=New+Arrival+2",
-    "https://via.placeholder.com/1920x600?text=Special+Offer+3",
-    "https://via.placeholder.com/1920x600?text=New+Arrival+4",
+    byd,
+    bmw,
+    supra,
+    porsche,
   ];
 
   return (
     <div className="carousel-container">
       <Slider {...settings} className="slider">
-        {images.map((url, index) => (
+        {images?.map((url, index) => (
           <div key={index} className="slide">
             <img src={url} alt={`Slide ${index + 1}`} className="slide-image" />
             <div className="slide-caption">
-              <h2>Special Offer {index + 1}</h2>
+              <h2>Special Offer {index += 1}</h2>
               <p>Discover the latest models and deals.</p>
             </div>
           </div>

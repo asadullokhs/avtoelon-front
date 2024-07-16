@@ -3,13 +3,13 @@ import "./Home.css";
 import { useInfoContext } from "../../context/Context";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
-  const { currentUser, categories, cars } = useInfoContext();
+  const { categories, cars } = useInfoContext();
 
   const sortCars = cars.slice(cars.length - 4, cars.length).reverse();
 
-  console.log(cars);
   return (
     <>
       <div className="homepage">
@@ -34,7 +34,12 @@ const Home = () => {
               );
             })
           ) : (
-            <p>There's no categories</p>
+            <div className="d-flex">
+            <Loading/>
+          <Loading/>
+          <Loading/>
+          <Loading/>
+          </div>
           )}
         </section>
         <section className="featured-cars">
@@ -53,19 +58,15 @@ const Home = () => {
                 );
               })
             ) : (
-              <p>Pashol naxuy</p>
+              <div className="d-flex">
+                <Loading/>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+              </div>
             )}
           </div>
         </section>
-        <section className="testimonials">
-          <h2>Customer Testimonials</h2>
-          <p>"Great service and amazing cars!" - Customer A</p>
-          <p>"I love my new car!" - Customer B</p>
-        </section>
-        <footer className="footer">
-          <button>Contact Us</button>
-          <button>View Inventory</button>
-        </footer>
       </div>
     </>
   );

@@ -17,6 +17,7 @@ import Services from "./pages/Services/Services";
 import Contact from "./pages/Contact/Contact";
 import Auth from "./pages/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const { currentUser } = useInfoContext();
@@ -34,8 +35,12 @@ const App = () => {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
+
         </CSSTransition>
       </TransitionGroup>
+          <section className="footer">
+            <Footer/>
+        </section>
     </div>
   );
 };
