@@ -35,11 +35,11 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link
-              to="/services"
+              to="/settings"
               className="nav-links"
               onClick={() => setIsOpen(false)}
             >
-              Services
+              Settings
             </Link>
           </li>
           <li className="nav-item">

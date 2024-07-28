@@ -13,7 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
-import Services from "./pages/Services/Services";
+import Settings from "./pages/Settings/Settings";
 import Contact from "./pages/Contact/Contact";
 import Auth from "./pages/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
@@ -32,7 +32,7 @@ const App = () => {
           <Routes location={location}>
             <Route path="/" element={currentUser ? <Home /> : <Auth />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/settings" element={currentUser ? <Settings /> : <Auth/>} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
 

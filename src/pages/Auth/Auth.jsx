@@ -39,10 +39,12 @@ const Auth = () => {
         res = await login(formData);
       }
 
+      console.log(res);
+
       toast.dismiss();
       setLoading(false);
-      localStorage.setItem("profile", JSON.stringify(res.data.user));
-      localStorage.setItem("token", JSON.stringify(res.data.token));
+      localStorage.setItem("profile", JSON.stringify(res?.data.user));
+      localStorage.setItem("token", JSON.stringify(res?.data.token));
       setCurrentUser(res?.data?.user);
       toast.success("Successfully registered!");
     } catch (error) {

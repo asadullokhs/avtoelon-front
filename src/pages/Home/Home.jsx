@@ -35,7 +35,7 @@ const Home = () => {
             })
           ) : (
             <div className="d-flex">
-            <Loading/>
+          <Loading/>
           <Loading/>
           <Loading/>
           <Loading/>
@@ -59,7 +59,7 @@ const Home = () => {
               })
             ) : (
               <div className="d-flex">
-                <Loading/>
+              <Loading/>
               <Loading/>
               <Loading/>
               <Loading/>
