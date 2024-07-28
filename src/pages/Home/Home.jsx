@@ -48,7 +48,7 @@ const Home = () => {
             {cars.length > 0 ? (
               sortCars.map((car) => {
                 return (
-                  <div className="car-item">
+                  <div key={car._id}  className="car-item">
                     <img src={car.image.url} alt="Car 1" />
                     <div className="car-details">
                       <h3>{car.title}</h3>
