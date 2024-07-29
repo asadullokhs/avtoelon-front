@@ -6,6 +6,7 @@ import { getOne, updateUser } from "../../api/userRequests";
 import userImage from "../../images/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg";
 import Loading from "../../components/Loading/Loading";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Settings = () => {
   const [user, setUser] = useState(null);
@@ -74,20 +75,25 @@ const Settings = () => {
           <p className="profile-role">{user.role}</p>
           <p className="profile-email">{user.email}</p>
           <p className="profile-date">Joined on {formattedDate}</p>
+          <div className="d-flex">
           <button className="logout-button" onClick={exit}>
             Logout
           </button>
           <button className="exit-button mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Edit
           </button>
+          </div>
         </div>
         <div className="main-content">
-          <h2 className="section-title">User's Cars</h2>
+         <div className="d-flex justify-content-between px-3">
+         <h2 className="section-title">User's Cars</h2>
+         <Link to={'/add'} className="section-title" style={{textDecoration:"none"}}>+</Link>
+         </div>
           <div className="cars-list">
             {cars.length > 0 ? (
               cars.map((car) => (
-                <div key={car._id} className="car-item">
-                  <img src={car.image} alt={car.title} className="car-image" />
+                <div key={car._id} className="car-item_set">
+                  <img src={car.image.url} alt={car.title} className="car-image" />
                   <div className="car-details">
                     <h3 className="car-title">{car.title}</h3>
                     <p className="car-price">{car.price} $</p>

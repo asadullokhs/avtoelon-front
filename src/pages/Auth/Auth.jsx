@@ -28,18 +28,14 @@ const Auth = () => {
         const confirmPassword = formData.get("confirmPassword");
 
         if (password === confirmPassword) {
-          toast.loading("Please wait...");
           setConfirmPass(true);
           res = await register(formData);
         } else {
-          toast.dismiss();
           return setConfirmPass(false);
         }
       } else {
         res = await login(formData);
       }
-
-      console.log(res);
 
       toast.dismiss();
       setLoading(false);

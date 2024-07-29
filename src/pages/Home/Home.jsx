@@ -7,8 +7,10 @@ import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
   const { categories, cars } = useInfoContext();
+  const sortCars = cars
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 4);
 
-  const sortCars = cars.slice(cars.length - 4, cars.length).reverse();
 
   return (
     <>

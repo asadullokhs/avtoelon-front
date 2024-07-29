@@ -12,3 +12,8 @@ export const deleteCar = (id) => {
   const token = JSON.parse(localStorage.getItem("token"));
   return API.delete(`/car/:${id}`, { headers: { token } });
 };
+
+export const addCar = (formData) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  return API.post(`/car`,formData, { headers: { token } });
+};

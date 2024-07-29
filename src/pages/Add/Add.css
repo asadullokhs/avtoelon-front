@@ -1,0 +1,78 @@
+/* src/pages/AddCar/AddCar.css */
+.add-car-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .add-car-container h2 {
+    text-align: center;
+    color: dodgerblue;
+    margin-bottom: 20px;
+  }
+  
+  .add-car-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: dodgerblue;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  .form-group select{
+    height: 50px;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: dodgerblue;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+   height: 47.5px !important ;
+  }
+  
+  button.submit-btn {
+    padding: 12px 20px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    flex: 1 1 100%;
+    align-self: flex-end;
+    margin-top: 20px;
+  }
+  
+  button.submit-btn:hover {
+    background-color: #1e90ff;
+  }
+  

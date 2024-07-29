@@ -15,6 +15,7 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Settings from "./pages/Settings/Settings";
 import Contact from "./pages/Contact/Contact";
+import Add from "./pages/Add/Add";
 import Auth from "./pages/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={currentUser ? <Settings /> : <Auth/>} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/add" element={currentUser ? <Add /> : <Auth/>} />
           </Routes>
 
         </CSSTransition>

@@ -45,7 +45,7 @@ const Footer = () => {
         <FooterLinks>
           <FooterLink to="/">Home</FooterLink>
           <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/services">Services</FooterLink>
+          <FooterLink to="/settings">Settings</FooterLink>
           <FooterLink to="/contact">Contact</FooterLink>
         </FooterLinks>
         <FooterText>
