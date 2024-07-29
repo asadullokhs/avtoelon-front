@@ -25,7 +25,7 @@ const Home = () => {
           {categories?.length > 0 ? (
             categories.map((categ) => {
               return (
-                <Link className="card">
+                <Link to={`/category/${categ._id}`} className="card">
                   <img
                     src={categ.image.url}
                     alt="Card Image"

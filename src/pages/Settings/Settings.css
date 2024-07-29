@@ -114,9 +114,9 @@
   border-radius: 5px;
 }
 
-.car-image {
-  width: 70px !important;
-  height: 70px !important;
+.car-image_set {
+  width: 70px ;
+  height: 70px ;
   object-fit: cover;
   border-radius: 5px;
 }

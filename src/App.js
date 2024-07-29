@@ -19,6 +19,7 @@ import Add from "./pages/Add/Add";
 import Auth from "./pages/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 const App = () => {
   const { currentUser } = useInfoContext();
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/settings" element={currentUser ? <Settings /> : <Auth/>} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/add" element={currentUser ? <Add /> : <Auth/>} />
+            <Route path="/category/:id" element={currentUser ? <CategoryPage /> : <Auth/>} />
           </Routes>
 
         </CSSTransition>

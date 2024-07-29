@@ -20,7 +20,7 @@ export const InfoProvider = ({ children }) => {
 
   let [categories, setCategories] = useState([]);
   let [cars, setCars] = useState([]);
-  const [homeReaload, setHomeReload] = useState(false);
+  const [homeReaload, setHomeReload] = useState(0);
 
   useEffect(() => {
     const getAllCategory = async () => {
@@ -35,6 +35,7 @@ export const InfoProvider = ({ children }) => {
     getAllCategory();
     getCars();
   }, [currentUser, homeReaload]);
+
 
   const value = {
     currentUser,

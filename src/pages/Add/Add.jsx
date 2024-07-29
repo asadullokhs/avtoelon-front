@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
-  const { categories, currentUser,setHomeReload } = useInfoContext();
+  const { categories, currentUser,setHomeReload, homeReload } = useInfoContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
