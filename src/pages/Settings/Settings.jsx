@@ -93,7 +93,7 @@ const Settings = () => {
             {cars.length > 0 ? (
               cars.map((car) => (
                 <div key={car._id} className="car-item_set">
-                  <img src={car.image.url} alt={car.title} className="car-image_set" />
+                  <img src={car?.image?.url} alt={car.title} className="car-image_set" />
                   <div className="car-details">
                     <h3 className="car-title">{car.title}</h3>
                     <p className="car-price">{car.price} $</p>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useInfoContext } from '../../context/Context';
+
 import Loading from '../../components/Loading/Loading';
 import './CategoryPage.css';
+import rasm from "../../images/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg"
 import { getOne } from '../../api/categoryRequests';
 
 const CategoryPage = () => {
@@ -59,7 +60,7 @@ const CategoryPage = () => {
                 <p className="car-year_set">{car.year}</p>
                 <p className="car-location_set">{car.location}</p>
                 <div className="car-author">
-                  <img src={car.author.avatar.url} alt={`${car.author.firstname} ${car.author.lastname}`} className="car-author-avatar" />
+                  <img src={car?.author?.avatar?.url ? car?.author?.avatar?.url : rasm} alt={`${car.author.firstname} ${car.author.lastname}`} className="car-author-avatar" />
                   <div className="car-author-info">
                     <p>{car.author.firstname} {car.author.lastname}</p>
                     <p>{car.author.email}</p>
