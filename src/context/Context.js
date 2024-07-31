@@ -1,3 +1,4 @@
+// InfoContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAll } from "../api/categoryRequests";
 import { getAllCars } from "../api/carRequests";
@@ -18,15 +19,16 @@ export const InfoProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
-  let [categories, setCategories] = useState([]);
-  let [cars, setCars] = useState([]);
-  const [homeReaload, setHomeReload] = useState(0);
+  const [categories, setCategories] = useState([]);
+  const [cars, setCars] = useState([]);
+  const [homeReload, setHomeReload] = useState(false);
 
   useEffect(() => {
     const getAllCategory = async () => {
       const res = await getAll();
       setCategories(res?.data.category);
     };
+
     const getCars = async () => {
       const res = await getAllCars();
       setCars(res?.data.cars);
@@ -34,8 +36,12 @@ export const InfoProvider = ({ children }) => {
 
     getAllCategory();
     getCars();
-  }, [currentUser, homeReaload]);
+  }, [currentUser, homeReload]);
 
+  const deleteCarCon = (carId) => {
+    setCars(prevCars => prevCars.filter(car => car._id !== carId));
+    setHomeReload(prev => !prev);
+  };
 
   const value = {
     currentUser,
@@ -46,8 +52,9 @@ export const InfoProvider = ({ children }) => {
     cars,
     setCars,
     serverUrl,
-    homeReaload,
-    setHomeReload
+    homeReload,
+    setHomeReload,
+    deleteCarCon
   };
 
   return (

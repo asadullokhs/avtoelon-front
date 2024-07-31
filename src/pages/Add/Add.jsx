@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
-  const { categories, currentUser,setHomeReload, homeReload } = useInfoContext();
+  const { categories, currentUser,setHomeReload } = useInfoContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ const Add = () => {
       toast.dismiss();
       toast.success("Succesfully added");
       e.target.reset();
-      setHomeReload(true);
+      setHomeReload(prev => !prev);
       navigate("/");
     } catch (error) {
       toast.dismiss();

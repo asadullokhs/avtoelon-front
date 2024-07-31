@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import defImage from "../../images/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg";
 import Loading from "../../components/Loading/Loading";
 import "./CarDetailPage.css";
-import { getOne } from "../../api/carRequests";
-import {  addComment, updateComment, deleteComment } from "../../api/commentRequests";
+import { getOne, deleteCar } from "../../api/carRequests";
+import {
+  addComment,
+  updateComment,
+  deleteComment,
+} from "../../api/commentRequests";
 import { getOne as getUser } from "../../api/userRequests";
 import { useInfoContext } from "../../context/Context";
 import { toast } from "react-toastify";
 
 const CarDetailPage = () => {
   const { id } = useParams();
-  const {currentUser} = useInfoContext();
+  const navigate = useNavigate();
+  let { currentUser, deleteCarCon  } = useInfoContext();
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [newComment, setNewComment] = useState("");
   const [editingComment, setEditingComment] = useState(null);
   const [user, setUser] = useState(null);
   const [commentsWithAuthors, setCommentsWithAuthors] = useState([]);
-
 
   useEffect(() => {
     const fetchCar = async () => {
@@ -61,10 +65,9 @@ const CarDetailPage = () => {
 
     fetchCar();
     fetchUser();
-  }, [id, toast]);
+  }, [id, toast, currentUser]);
 
   const handleAddComment = async () => {
-    toast.loading("Please wait...")
     if (newComment.trim() === "" || !user) return;
 
     const commentData = {
@@ -74,6 +77,7 @@ const CarDetailPage = () => {
     };
 
     try {
+      toast.loading("Please wait...");
       const response = await addComment(commentData);
       const newCommentWithAuthor = {
         ...response.data.newComment,
@@ -82,16 +86,16 @@ const CarDetailPage = () => {
       setCommentsWithAuthors([...commentsWithAuthors, newCommentWithAuthor]);
       setNewComment("");
       toast.dismiss();
-      toast.success("Added successfully!")
+      toast.success("Added successfully!");
     } catch (error) {
       toast.dismiss();
-      toast.error(error)
+      toast.error("Error adding comment");
       console.error("Error adding comment:", error);
     }
   };
 
   const handleUpdateComment = async () => {
-    toast.loading("Please wait...")
+    toast.loading("Please wait...");
     if (editingComment.content.trim() === "") return;
 
     try {
@@ -101,33 +105,52 @@ const CarDetailPage = () => {
       setCommentsWithAuthors(
         commentsWithAuthors.map((comment) =>
           comment._id === editingComment._id
-            ? { ...comment, content: response.data.comments.content }
+            ? { ...comment, content: response?.data?.comments.content }
             : comment
         )
       );
       setEditingComment(null);
       toast.dismiss();
-      toast.success("Successfully updated!")
+      toast.success("Successfully updated!");
     } catch (error) {
       toast.dismiss();
-      toast.error(error)
+      toast.error("Error updating comment");
       console.error("Error updating comment:", error);
     }
   };
 
   const handleDeleteComment = async (commentId) => {
     try {
-     toast.loading('Please wait...')
+      toast.loading("Please wait...");
       await deleteComment(commentId);
       setCommentsWithAuthors(
         commentsWithAuthors.filter((comment) => comment._id !== commentId)
       );
       toast.dismiss();
-      toast.success("Deleted successfully!")
+      toast.success("Deleted successfully!");
     } catch (error) {
-        toast.dismiss();
-        toast.error(error)
+      toast.dismiss();
+      toast.error("Error deleting comment");
       console.error("Error deleting comment:", error);
+    }
+  };
+
+  const handleEditCar = () => {
+    navigate(`/car/edit/${id}`);
+  };
+
+  const handleDeleteCar = async () => {
+    try {
+      toast.loading("Please wait...");
+      await deleteCar(id);
+      toast.dismiss();
+      toast.success("Car deleted successfully!");
+      navigate("/");
+      deleteCarCon(id);
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Error deleting car");
+      console.error("Error deleting car:", error);
     }
   };
 
@@ -177,6 +200,14 @@ const CarDetailPage = () => {
             </div>
           </div>
         </div>
+        {user && (author._id === user._id || user.role === "admin") && (
+          <div className="one_car-actions">
+            <button className="me-2" onClick={handleEditCar}>
+              Edit Car
+            </button>
+            <button onClick={handleDeleteCar}>Delete Car</button>
+          </div>
+        )}
       </div>
       <div className="one_car-comments">
         <h2>Comments</h2>
@@ -186,24 +217,33 @@ const CarDetailPage = () => {
               <p>{comment.content}</p>
               <div className="one_comment-author">
                 <img
-                  src={comment.author[0]?.avatar?.url || comment.author?.avatar?.url || defImage}
-                  alt={`${comment.author[0]?.firstname || comment.author?.firstname} ${comment.author[0]?.lastname|| comment.author?.lastname}`}
+                  src={
+                    comment.author[0]?.avatar?.url ||
+                    comment.author?.avatar?.url ||
+                    defImage
+                  }
+                  alt={`${
+                    comment.author[0]?.firstname || comment.author?.firstname
+                  } ${comment.author[0]?.lastname || comment.author?.lastname}`}
                   className="one_comment-author-avatar"
                 />
                 <p className="one_comment-author-name">
-                  Author: {comment.author[0]?.firstname || comment.author?.firstname} {comment.author[0]?.lastname|| comment.author?.lastname}
+                  Author:{" "}
+                  {comment.author[0]?.firstname || comment.author?.firstname}{" "}
+                  {comment.author[0]?.lastname || comment.author?.lastname}
                 </p>
               </div>
-              {user && comment.authorId === user._id && (
-                <div className="one_comment-actions">
-                  <button onClick={() => setEditingComment(comment)}>
-                    Edit
-                  </button>
-                  <button onClick={() => handleDeleteComment(comment._id)}>
-                    Delete
-                  </button>
-                </div>
-              )}
+              {user &&
+                (comment.authorId === user._id || user.role === "admin") && (
+                  <div className="one_comment-actions">
+                    <button onClick={() => setEditingComment(comment)}>
+                      Edit
+                    </button>
+                    <button onClick={() => handleDeleteComment(comment._id)}>
+                      Delete
+                    </button>
+                  </div>
+                )}
             </div>
           ))
         ) : (

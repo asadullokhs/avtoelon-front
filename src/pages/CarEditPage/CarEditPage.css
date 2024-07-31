@@ -1,0 +1,102 @@
+.car-edit-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .car-edit-page h2 {
+    font-size: 2.5em;
+    color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .car-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 15px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #007bff;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  
+  .current-image {
+    max-width: 100%;
+    max-height: 400px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .save-button,
+  .delete-button {
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  .save-button:active,
+  .delete-button:active {
+    transform: scale(0.98);
+  }
+  

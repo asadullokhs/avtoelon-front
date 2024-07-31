@@ -10,7 +10,12 @@ export const getOne = (id) => API.get(`/car/${id}`);
 
 export const deleteCar = (id) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  return API.delete(`/car/:${id}`, { headers: { token } });
+  return API.delete(`/car/${id}`, { headers: { token } });
+};
+
+export const updateCar = (id, formDate) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  return API.put(`/car/${id}`, formDate , { headers: { token } });
 };
 
 export const addCar = (formData) => {
