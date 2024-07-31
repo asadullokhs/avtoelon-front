@@ -6,7 +6,7 @@ const API = axios.create({ baseURL: serverUrl });
 
 export const getAllCars = () => API.get(`/car`);
 
-export const getOne = (id) => API.post(`/car/${id}`);
+export const getOne = (id) => API.get(`/car/${id}`);
 
 export const deleteCar = (id) => {
   const token = JSON.parse(localStorage.getItem("token"));

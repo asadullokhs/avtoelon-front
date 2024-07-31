@@ -50,13 +50,13 @@ const Home = () => {
             {cars.length > 0 ? (
               sortCars.map((car) => {
                 return (
-                  <div key={car._id}  className="car-item">
+                  <Link style={{textDecoration:"none"}} to={`/car/${car._id}`} key={car._id}  className="car-item">
                     <img src={car.image.url} alt="Car 1" />
                     <div className="car-details">
                       <h3>{car.title}</h3>
                       <p>{car.price + "$"}</p>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             ) : (

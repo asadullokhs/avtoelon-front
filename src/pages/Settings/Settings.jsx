@@ -92,13 +92,13 @@ const Settings = () => {
           <div className="cars-list">
             {cars.length > 0 ? (
               cars.map((car) => (
-                <div key={car._id} className="car-item_set">
+                <Link style={{textDecoration:"none"}} to={`/car/${car._id}`} key={car._id} className="car-item_set">
                   <img src={car?.image?.url} alt={car.title} className="car-image_set" />
                   <div className="car-details">
                     <h3 className="car-title">{car.title}</h3>
                     <p className="car-price">{car.price} $</p>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p className="def-text">You don't have cars</p>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Loading from '../../components/Loading/Loading';
 import './CategoryPage.css';
@@ -50,7 +50,7 @@ const CategoryPage = () => {
       <div className="category-car-list">
         {category?.cars.length > 0 ? (
           category?.cars.map(car => (
-            <div key={car._id} className="car-card">
+            <Link style={{textDecoration:"none"}} to={`/car/${car._id}`} key={car._id} className="car-card">
               <div className="car-image-wrapper">
                 <img src={car.image.url} alt={car.title} className="car-image" />
               </div>
@@ -67,7 +67,7 @@ const CategoryPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="loading-container">
