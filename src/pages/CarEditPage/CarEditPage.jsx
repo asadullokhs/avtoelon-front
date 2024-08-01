@@ -42,6 +42,7 @@ const CarEditPage = () => {
       await updateCar(id, formData);
       toast.success("Car updated successfully!");
       navigate(`/car/${id}`);
+      deleteCarCon(id)
     } catch (error) {
       console.error("Error updating car:", error);
       toast.error("Failed to update car.");

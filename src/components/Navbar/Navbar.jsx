@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useInfoContext } from "../../context/Context";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentUser } = useInfoContext();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,6 +35,19 @@ const Navbar = () => {
               About
             </Link>
           </li>
+          {currentUser.role === "admin" ? (
+            <li className="nav-item">
+              <Link
+                to="/category-set"
+                className="nav-links"
+                onClick={() => setIsOpen(false)}
+              >
+                Category
+              </Link>
+            </li>
+          ) : (
+            ""
+          )}
           <li className="nav-item">
             <Link
               to="/settings"

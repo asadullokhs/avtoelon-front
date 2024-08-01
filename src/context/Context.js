@@ -1,6 +1,6 @@
 // InfoContext.js
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAll } from "../api/categoryRequests";
+import { getAll, addCategoryAPI, deleteCategoryAPI, updateCategoryAPI } from "../api/categoryRequests";
 import { getAllCars } from "../api/carRequests";
 
 const InfoContext = createContext();
@@ -38,6 +38,40 @@ export const InfoProvider = ({ children }) => {
     getCars();
   }, [currentUser, homeReload]);
 
+
+  const deleteCategory = async (categoryId) => {
+    try {
+      await deleteCategoryAPI(categoryId);
+      setCategories(prevCategories =>
+        prevCategories.filter(category => category._id !== categoryId)
+      );
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
+  };
+
+  const updateCategory = async (categoryId, updatedData) => {
+    try {
+      const response = await updateCategoryAPI(categoryId, updatedData);
+      setCategories(prevCategories =>
+        prevCategories.map(category =>
+          category._id === categoryId ? response.data.updatedCategory : category
+        )
+      );
+    } catch (error) {
+      console.error("Error updating category:", error);
+    }
+  };
+
+  const addCategory = async (newCategoryData) => {
+    try {
+      const response = await addCategoryAPI(newCategoryData);
+      setCategories(prevCategories => [...prevCategories, response.data.newCategory]);
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
+
   const deleteCarCon = (carId) => {
     setCars(prevCars => prevCars.filter(car => car._id !== carId));
     setHomeReload(prev => !prev);
@@ -54,7 +88,10 @@ export const InfoProvider = ({ children }) => {
     serverUrl,
     homeReload,
     setHomeReload,
-    deleteCarCon
+    deleteCarCon,
+    updateCategory,
+    deleteCategory,
+    addCategory,
   };
 
   return (

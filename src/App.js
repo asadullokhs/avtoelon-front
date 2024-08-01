@@ -22,6 +22,7 @@ import Footer from "./components/Footer/Footer";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import CarDetailPage from "./pages/CarDetailPage/CarDetailPage";
 import CarEditPage from "./pages/CarEditPage/CarEditPage";
+import CategoryManagementPage from "./pages/CategorySet/CategoryManagmentPage";
 
 const App = () => {
   const { currentUser } = useInfoContext();
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/category/:id" element={currentUser ? <CategoryPage /> : <Auth/>} />
             <Route path="/car/:id" element={currentUser ? <CarDetailPage /> : <Auth/>} />
             <Route path="/car/edit/:id" element={currentUser ? <CarEditPage /> : <Auth/>} />
+            <Route path="/category-set" element={currentUser ? <CategoryManagementPage /> : <Auth/>} />
           </Routes>
 
         </CSSTransition>
