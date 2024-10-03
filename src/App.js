@@ -37,20 +37,37 @@ const App = () => {
           <Routes location={location}>
             <Route path="/" element={currentUser ? <Home /> : <Auth />} />
             <Route path="/about" element={<About />} />
-            <Route path="/settings" element={currentUser ? <Settings /> : <Auth/>} />
+            <Route
+              path="/settings"
+              element={currentUser ? <Settings /> : <Auth />}
+            />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/add" element={currentUser ? <Add /> : <Auth/>} />
-            <Route path="/category/:id" element={currentUser ? <CategoryPage /> : <Auth/>} />
-            <Route path="/car/:id" element={currentUser ? <CarDetailPage /> : <Auth/>} />
-            <Route path="/car/edit/:id" element={currentUser ? <CarEditPage /> : <Auth/>} />
-            <Route path="/category-set" element={currentUser ? <CategoryManagementPage /> : <Auth/>} />
+            <Route path="/add" element={currentUser ? <Add /> : <Auth />} />
+            <Route
+              path="/category/:id"
+              element={currentUser ? <CategoryPage /> : <Auth />}
+            />
+            <Route
+              path="/car/:id"
+              element={currentUser ? <CarDetailPage /> : <Auth />}
+            />
+            <Route
+              path="/car/edit/:id"
+              element={currentUser ? <CarEditPage /> : <Auth />}
+            />
+            <Route
+              path="/category-set"
+              element={currentUser ? <CategoryManagementPage /> : <Auth />}
+            />
           </Routes>
-
         </CSSTransition>
       </TransitionGroup>
-          <section className="footer">
-            <Footer/>
+
+      {currentUser && (
+        <section className="footer">
+          <Footer />
         </section>
+      )}
     </div>
   );
 };

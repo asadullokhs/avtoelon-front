@@ -15,7 +15,7 @@ export const addCategoryAPI = (formData) => {
 };  
 export const deleteCategoryAPI = (id) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  return API.delete(`/category/:${id}`, { headers: { token } });
+  return API.delete(`/category/${id}`, { headers: { token } });
 };
 export const updateCategoryAPI = (id, formDate) => {
   const token = JSON.parse(localStorage.getItem("token"));

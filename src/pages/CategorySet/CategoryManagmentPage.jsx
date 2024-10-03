@@ -6,23 +6,9 @@ import "./CategoryManagmentPage.css";
 import Loading from "../../components/Loading/Loading";
 
 const CategoryManagementPage = () => {
-  const { categories, addCategory, updateCategory, deleteCategory } = useInfoContext();
-
-  console.log(categories);
+  const { categories, addCategory, updateCategory, deleteCategory, deleteCatCon } = useInfoContext();
   const [newCategory, setNewCategory] = useState("");
   const [editingCategory, setEditingCategory] = useState(null);
-
-  if(categories.length == 0){
-    return (
-      <div className="category-management-page">
-        <div className="d-flex justify-content-center">
-          <Loading/>
-          <Loading/>
-          <Loading/>
-        </div>
-      </div>
-    )
-  }
 
   const handleAddCategory = async () => {
     if (!newCategory.trim()) return;
@@ -52,6 +38,7 @@ const CategoryManagementPage = () => {
     try {
       await deleteCategory(categoryId);
       toast.success("Category deleted successfully!");
+      deleteCatCon(categoryId);
     } catch (error) {
       toast.error("Error deleting category.");
       console.error("Error deleting category:", error);

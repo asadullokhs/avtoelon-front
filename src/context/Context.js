@@ -76,6 +76,10 @@ export const InfoProvider = ({ children }) => {
     setCars(prevCars => prevCars.filter(car => car._id !== carId));
     setHomeReload(prev => !prev);
   };
+  const deleteCatCon = (carId) => {
+    setCategories(prevCats => prevCats.filter(car => car._id !== carId));
+    setHomeReload(prev => !prev);
+  };
 
   const value = {
     currentUser,
@@ -92,6 +96,7 @@ export const InfoProvider = ({ children }) => {
     updateCategory,
     deleteCategory,
     addCategory,
+    deleteCatCon
   };
 
   return (

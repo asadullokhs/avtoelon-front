@@ -79,6 +79,8 @@ const CarDetailPage = () => {
     try {
       toast.loading("Please wait...");
       const response = await addComment(commentData);
+      console.log(response);
+      
       const newCommentWithAuthor = {
         ...response.data.newComment,
         author: user,
